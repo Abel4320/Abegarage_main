@@ -37,11 +37,11 @@ async function createEmployee (employee){
         //construct to the employee oobject to return 
         createdEmployee={
             employee_id:employee_id,
-            employee_email:employee.employee_email,
-            active_employee:employee.active_employee,
+            // employee_email:employee.employee_email,
+            // active_employee:employee.active_employee,
             employee_first_name:employee.employee_first_name,
             employee_last_name:employee.employee_last_name,
-            employee_phone:employee.employee_phone,
+            // employee_phone:employee.employee_phone,
             company_role_id:employee.company_role_id
         }
 
@@ -49,8 +49,15 @@ async function createEmployee (employee){
         console.log(error)
     }
     return createdEmployee;
-}
+   
+};
+async function getEmployeeByEmail(employee_email) {
+    const query = "SELECT * FROM employee INNER JOIN employee_info ON employee.employee_id = employee_info.employee_id INNER JOIN employee_pass ON employee.employee_id = employee_pass.employee_id INNER JOIN employee_role ON employee.employee_id = employee_role.employee_id WHERE employee.employee_email = ?";
+    const rows = await conn.query(query, [employee_email]);
+    return rows;
+  }
 module.exports ={
     checkIfEmployeeExists,
-    createEmployee
-}
+    createEmployee,
+    getEmployeeByEmail,
+};
