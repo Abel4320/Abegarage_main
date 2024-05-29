@@ -39,7 +39,7 @@ async function logIn(req, res, next) {
         // Send a 500 Internal Server Error response if an exception occurs
         res.status(500).json({
             status: "error",
-            message: "An unexpected error occurred",
+            message: "Email or password badly entered",
         });
     }
 }

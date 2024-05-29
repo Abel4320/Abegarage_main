@@ -1,6 +1,17 @@
 import React from 'react';
+import { Link} from 'react-router-dom'
 import homelogo from '../../../assets/images/logos/homelogo.png'
-const Header = () => {
+import useAuth  from '../../../context/AuthContext.jsx';
+import logInService from '../../../services/login.service.js';
+const Header = (props) => {
+
+  console.log(useAuth())
+  const {isLogged,setIsLogged,employee} = useAuth();
+  const logOut= ()=>{
+    logInService.logOut();
+    setIsLogged(false);
+  }
+
   return (
     <div>
       <header className="main-header header-style-one">
@@ -13,7 +24,7 @@ const Header = () => {
                 <div className="office-hour">Monday - Saturday 7:00AM - 6:00PM</div>
               </div>
               <div className="right-column">
-                <div className="phone-number">Schedule Your Appointment Today : <strong>1800 456 7890</strong></div>
+                {isLogged ? <div className="employee_name">Welcome {employee?.employee_first_name}</div> : <div className="phone-number">Schedule Your Appointment Today : <strong>1800 456 7890</strong></div>}
               </div>
             </div>
           </div>
@@ -46,7 +57,9 @@ const Header = () => {
                   </nav>
                 </div>
                 <div className="search-btn"></div>
-                <div className="link-btn"><a href="/login" className="theme-btn btn-style-one">Login</a></div>
+                {isLogged? (<div  onClick={logOut} className="link-btn"><Link to="/" className="theme-btn btn-style-one">
+                    Log Out</Link></div>):(<div className="link-btn"><Link to="/login" className="theme-btn btn-style-one">
+                    LogIn</Link></div>)}
               </div>
             </div>
           </div>
@@ -71,7 +84,9 @@ const Header = () => {
                     <nav className="main-menu navbar-expand-md navbar-light"></nav>
                   </div>
                   <div className="search-btn"></div>
-                  <div className="link-btn"><a href="/login" className="theme-btn btn-style-one">Login</a></div>
+                  {isLogged? (<div  onClick={logOut} className="link-btn"><Link to="/" className="theme-btn btn-style-one">
+                    LogOut</Link></div>):(<div className="link-btn"><Link to="/login" className="theme-btn btn-style-one">
+                    LogIn</Link></div>)}
                 </div>
               </div>
             </div>

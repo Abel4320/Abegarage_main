@@ -559,7 +559,12 @@ img {
     font-size: 18px;
     color: #fff;
 }
+.header-top .right-column .employee_name {
+    margin-right: 30px;
+    color: white;
+    font-size: 18px;
 
+}
 .header-top .right-column .phone-number strong {
     font-weight: 700;
     font-size: 22px;
@@ -2374,9 +2379,10 @@ img {
 
 .video-section {
     position: relative;
-    padding: 130px 0 120px;
+    padding: 130px 0 260px;
     background-size: cover;
     overflow: hidden;
+   
 }
 
 .video-section .sec-bg {

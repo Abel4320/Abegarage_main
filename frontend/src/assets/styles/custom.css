@@ -260,3 +260,6 @@
   .change-status {
     cursor: pointer;
   }
+  .employee_form_errors{
+    color: red;
+  }

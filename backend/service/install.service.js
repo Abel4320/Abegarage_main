@@ -12,7 +12,7 @@ async function install() {
       query = query.trim();
       if (!query) continue; // Skip empty queries resulting from split
       console.log(`Executing query: ${query}`);
-      await conn(query);
+       await conn.query(query);
     }
 
     console.log("All tables are created successfully");
